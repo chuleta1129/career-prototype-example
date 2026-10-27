@@ -224,7 +224,7 @@ select {
   box-shadow: 0 12px 28px rgba(26, 48, 40, 0.08);
 }
 .story-top {
-  min-height: 130px;
+  min-height: 80px;
   padding: 20px;
   background: var(--card-bg, var(--soft));
   display: flex;
