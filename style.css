@@ -98,7 +98,7 @@ a {
   background: linear-gradient(180deg, var(--soft), var(--background));
 }
 .eyebrow {
-  color: var(--on-secondary);
+  color: var(--muted);
   text-transform: uppercase;
   font-weight: 800;
   font-size: 0.75rem;
@@ -358,8 +358,17 @@ footer {
   padding: 20px;
   z-index: 5;
 }
+#modal-title {
+  color: #ffffff;
+}
 .modal-backdrop.open {
   display: flex;
+}
+.takeaway strong {
+  color: var(--muted);
+}
+.takeaway-highlight{
+  color: var(--muted);
 }
 .modal {
   max-width: 620px;
@@ -387,8 +396,10 @@ footer {
   width: 36px;
   height: 36px;
   background: var(--surface);
-  color: var(--text);
-  font-size: 1.3rem;
+  color: var(--muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  padding-bottom: 7px;
 }
 .modal p {
   color: var(--muted);

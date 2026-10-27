@@ -19,7 +19,7 @@ const stories = [
     journey:
       "Maya started by customizing simple web pages and sharing them with friends. A class project helped her discover that she enjoyed making technology easier to use. She built a small portfolio, asked for feedback, and landed her first junior role.",
     takeaway:
-      "You do not need to know everything before you start. Build small projects, explain your decisions, and keep improving them.",
+      '<span class="takeaway-highlight">You do not need to know everything before you start. Build small projects, explain your decisions, and keep improving them.</span>',
   },
   {
     id: 2,
@@ -39,7 +39,7 @@ const stories = [
     journey:
       "Jordan was interested in art but also curious about why some apps felt easy and others felt frustrating. Interviewing classmates for a school project introduced them to user research and prototyping.",
     takeaway:
-      "Curiosity is a design skill. Learn to ask good questions before deciding what to build.",
+      '<span class="takeaway-highlight">Curiosity is a design skill. Learn to ask good questions before deciding what to build.</span>',
   },
   {
     id: 3,
@@ -59,7 +59,7 @@ const stories = [
     journey:
       "Sam liked puzzles but did not initially picture a data career. A spreadsheet-heavy internship led to learning SQL and data visualization. Their first portfolio project answered a practical question about customer behavior.",
     takeaway:
-      "A clear explanation of what the numbers mean can be just as valuable as the analysis itself.",
+      '<span class="takeaway-highlight">A clear explanation of what the numbers mean can be just as valuable as the analysis itself.</span>',
   },
   {
     id: 4,
@@ -79,7 +79,7 @@ const stories = [
     journey:
       "Alex explored healthcare through volunteering and conversations with nurses. Clinical rotations helped them understand the pace of the work and the importance of communicating clearly with patients and colleagues.",
     takeaway:
-      "Talk with people in the field and look for realistic ways to experience the day-to-day work before committing.",
+      '<span class="takeaway-highlight">Talk with people in the field and look for realistic ways to experience the day-to-day work before committing.</span>',
   },
   {
     id: 5,
@@ -99,7 +99,7 @@ const stories = [
     journey:
       "Taylor enjoyed troubleshooting computers for family and friends. They turned that interest into a first IT support job, where documenting fixes and learning from experienced teammates helped them grow.",
     takeaway:
-      "A first job does not have to be your forever job. It can be a foundation for your next step.",
+      '<span class="takeaway-highlight">A first job does not have to be your forever job. It can be a foundation for your next step.</span>',
   },
   {
     id: 6,
@@ -119,7 +119,7 @@ const stories = [
     journey:
       "Chris spent several years in an office role before testing a weekend side project. Early customer conversations helped shape the service. Over time, they learned pricing, budgeting, and how to manage uncertainty.",
     takeaway:
-      "Test a small version of an idea and learn from real feedback before making a big leap.",
+      '<span class="takeaway-highlight">Test a small version of an idea and learn from real feedback before making a big leap.</span>',
   },
 ];
 
@@ -134,6 +134,7 @@ const closeButton = document.getElementById("close");
 
 function renderStories() {
   const query = search.value.trim().toLowerCase();
+
   const matchingStories = stories.filter((story) => {
     const searchableText = [
       story.title,
@@ -146,6 +147,7 @@ function renderStories() {
     ]
       .join(" ")
       .toLowerCase();
+
     return (
       (!query || searchableText.includes(query)) &&
       (!field.value || story.field === field.value) &&
@@ -154,7 +156,9 @@ function renderStories() {
     );
   });
 
-  count.textContent = `${matchingStories.length} ${matchingStories.length === 1 ? "story" : "stories"}`;
+  count.textContent = `${matchingStories.length} ${
+    matchingStories.length === 1 ? "story" : "stories"
+  }`;
 
   if (matchingStories.length === 0) {
     grid.innerHTML =
@@ -165,17 +169,31 @@ function renderStories() {
   grid.innerHTML = matchingStories
     .map(
       (story) => `
-    <article class="story">
-      <div class="story-top" style="--card-bg:${story.bg}; --avatar-bg:${story.avatar}">
-        <div class="avatar" aria-hidden="true">${story.initials}</div><div class="story-icon" aria-hidden="true">${story.icon}</div>
-      </div>
-      <div class="story-body">
-        <div class="pills"><span class="pill">${story.field}</span><span class="pill">${story.experience}</span></div>
-        <h3>${story.title}</h3><div class="person">${story.person} · ${story.role}</div>
-        <p>${story.summary}</p>
-        <div class="story-footer"><span>Major: ${story.major.length > 29 ? `${story.major.slice(0, 27)}…` : story.major}</span><button class="read-link" type="button" data-id="${story.id}">Read story ↗</button></div>
-      </div>
-    </article>`,
+      <article class="story">
+        <div class="story-top" style="--card-bg:${story.bg}; --avatar-bg:${story.avatar}">
+          <div class="avatar" aria-hidden="true">${story.initials}</div>
+          <div class="story-icon" aria-hidden="true">${story.icon}</div>
+        </div>
+        <div class="story-body">
+          <div class="pills">
+            <span class="pill">${story.field}</span>
+            <span class="pill">${story.experience}</span>
+          </div>
+          <h3>${story.title}</h3>
+          <div class="person">${story.person} · ${story.role}</div>
+          <p>${story.summary}</p>
+          <div class="story-footer">
+            <span>Major: ${
+              story.major.length > 29
+                ? `${story.major.slice(0, 27)}…`
+                : story.major
+            }</span>
+            <button class="read-link" type="button" data-id="${story.id}">
+              Read story ↗
+            </button>
+          </div>
+        </div>
+      </article>`,
     )
     .join("");
 }
@@ -183,15 +201,27 @@ function renderStories() {
 function openStory(id) {
   const story = stories.find((item) => item.id === Number(id));
   if (!story) return;
+
   document.getElementById("modal-field").textContent =
     `${story.field} · ${story.experience}`;
+
   document.getElementById("modal-title").textContent = story.title;
+
   document.getElementById("modal-person").textContent =
     `${story.person} — ${story.role}`;
+
   document.getElementById("modal-content").innerHTML = `
-    <p>${story.summary}</p><p>${story.journey}</p>
-    <div class="takeaway"><strong>One thing to remember</strong><br>${story.takeaway}</div>
-    <p><strong>Related major or study area:</strong> ${story.major}<br><strong>Interests:</strong> ${story.interests.join(", ")}</p>`;
+    <p>${story.summary}</p>
+    <p>${story.journey}</p>
+    <div class="takeaway">
+      <strong>One thing to remember</strong><br>
+      ${story.takeaway}
+    </div>
+    <p>
+      <strong>Related major or study area:</strong> ${story.major}<br>
+      <strong>Interests:</strong> ${story.interests.join(", ")}
+    </p>`;
+
   modal.classList.add("open");
   modal.setAttribute("aria-hidden", "false");
   closeButton.focus();
@@ -202,28 +232,39 @@ function closeStory() {
   modal.setAttribute("aria-hidden", "true");
 }
 
-[search].forEach((element) => element.addEventListener("input", renderStories));
+[search].forEach((element) =>
+  element.addEventListener("input", renderStories),
+);
+
 [field, experience, interest].forEach((element) =>
   element.addEventListener("change", renderStories),
 );
+
 grid.addEventListener("click", (event) => {
   const button = event.target.closest("[data-id]");
   if (button) openStory(button.dataset.id);
 });
+
 closeButton.addEventListener("click", closeStory);
+
 modal.addEventListener("click", (event) => {
   if (event.target === modal) closeStory();
 });
+
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeStory();
 });
+
 document.getElementById("reset").addEventListener("click", () => {
   search.value = "";
   field.value = "";
   experience.value = "";
   interest.value = "";
+
   renderStories();
-  document.getElementById("stories").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("stories").scrollIntoView({
+    behavior: "smooth",
+  });
 });
 
 renderStories();
