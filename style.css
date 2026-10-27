@@ -81,6 +81,7 @@ a {
 }
 .topnav a {
   text-decoration: none;
+  color: var(--primary);
 }
 .topnav a:hover {
   color: var(--primary);
@@ -137,16 +138,17 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 22px;
   padding: 22px;
-  box-shadow: 0 14px 35px rgba(26, 48, 40, 0.06);
+  box-shadow: 0 14px 35px rgba(98, 189, 155, 0.06);
 }
 .search-box {
   display: block;
   position: relative;
+  color: var(--muted);
 }
 .search-box span {
   position: absolute;
   left: 15px;
-  top: 10px;
+  top: 7px;
   color: var(--muted);
   font-size: 1.4rem;
 }
@@ -154,10 +156,18 @@ input[type="search"] {
   width: 100%;
   border: 1px solid var(--line);
   background: var(--surface);
-  color: var(--line);
+  color: var(--muted);
   padding: 13px 14px 13px 42px;
   border-radius: 12px;
   outline-offset: 2px;
+}
+input[type="search"]:focus {
+  outline: 2px solid var(--site-primary);
+  outline-offset: 2px;
+}
+input[type="search"]::placeholder {
+  color: var(--muted);
+  opacity: 1;
 }
 .filters {
   display: grid;
