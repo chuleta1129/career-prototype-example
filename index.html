@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Explore sample career stories and discover different career paths."
+    />
+    <title>Pathways — Career Stories Prototype</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="Pathways home"
+          ><span class="brand-mark">↗</span
+          ><span>pathways<span class="brand-dot">.</span></span></a
+        >
+        <nav class="topnav" aria-label="Main navigation">
+          <a href="#stories">Explore stories</a
+          ><a href="#about">About this demo</a
+          ><a class="nav-cta" href="#stories">Find your path ↗</a>
+        </nav>
+      </header>
+
+      <section class="hero" id="top">
+        <div class="eyebrow">Real people. Real career journeys.</div>
+        <h1>
+          Your future isn't one straight <span class="highlight">line.</span>
+        </h1>
+        <p>
+          Explore stories from people doing the work. Find a path that matches
+          your interests, your strengths, and the life you want to build.
+        </p>
+      </section>
+
+      <div class="search-wrap" id="stories">
+        <section
+          class="search-panel"
+          aria-label="Search and filter career stories"
+        >
+          <label class="search-box"
+            ><span aria-hidden="true">⌕</span
+            ><input
+              id="search"
+              type="search"
+              placeholder="Search roles, interests, skills, or majors…"
+              aria-label="Search career stories"
+          /></label>
+          <div class="filters">
+            <select id="field" aria-label="Filter by career field">
+              <option value="">All career fields</option>
+              <option>Technology</option>
+              <option>Design</option>
+              <option>Healthcare</option>
+              <option>Business</option>
+            </select>
+            <select id="experience" aria-label="Filter by experience">
+              <option value="">Any experience level</option>
+              <option>Starting out</option>
+              <option>Early career</option>
+              <option>Career changer</option>
+            </select>
+            <select id="interest" aria-label="Filter by interest">
+              <option value="">All interests</option>
+              <option>Building things</option>
+              <option>Helping people</option>
+              <option>Creative problem-solving</option>
+              <option>Working with data</option>
+            </select>
+          </div>
+        </section>
+      </div>
+
+      <main class="content">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">A few paths to explore</div>
+            <h2>Stories that open doors.</h2>
+          </div>
+          <div class="result-count" id="count" aria-live="polite">
+            6 stories
+          </div>
+        </div>
+        <div class="grid" id="grid"></div>
+        <section class="callout" id="about">
+          <div>
+            <h2>Careers are made of many small steps.</h2>
+            <p>
+              This concept prototype shows how a searchable career-story library
+              could help students discover roles, explore different journeys,
+              and learn from people with experience.
+            </p>
+          </div>
+          <button id="reset" type="button">Reset filters ↺</button>
+        </section>
+      </main>
+      <footer>
+        Pathways · AI-assisted concept prototype · Sample profiles are fictional
+        and for demonstration only.
+      </footer>
+    </div>
+
+    <div
+      class="modal-backdrop"
+      id="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      aria-hidden="true"
+    >
+      <div class="modal">
+        <div class="modal-head">
+          <div>
+            <div class="eyebrow" id="modal-field"></div>
+            <h2 id="modal-title"></h2>
+            <div class="person" id="modal-person"></div>
+          </div>
+          <button
+            class="close"
+            id="close"
+            type="button"
+            aria-label="Close story"
+          >
+            ×
+          </button>
+        </div>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </body>
+</html>
